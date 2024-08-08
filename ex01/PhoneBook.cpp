@@ -3,13 +3,9 @@
 PhoneBook::PhoneBook()
 {
 	contactCount = 0;
-	std::cout << "PhoneBook created" << std::endl;
 }
 
-PhoneBook::~PhoneBook()
-{
-	std::cout << "PhoneBook destroyed" << std::endl;
-}
+PhoneBook::~PhoneBook() {}
 
 void PhoneBook::addContact()
 {
@@ -24,6 +20,7 @@ void PhoneBook::searchContact()
 		std::cout << "Phonebook is empty" << std::endl;
 		return;
 	}
+
 	std::cout << "Saved contacts:" << std::endl;
 	std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
 	std::cout << "-------------------------------------------" << std::endl;
@@ -35,10 +32,12 @@ void PhoneBook::searchContact()
 		std::cout << std::setw(10) << truncateString(contacts[i].getNickname()) << std::endl;
 	}
 	std::cout << "-------------------------------------------" << '\n' << std::endl;
+
 	std::cout << "Enter index of contact to be displayed: ";
-	int index;
-	std::cin >> index;
-	if (index < 0 || index >= contactCount)
+	std::string str_index;
+	std::cin >> str_index;
+	int index = std::atoi(str_index.c_str());
+	if ((str_index != "0"  && index <= 0) || index >= contactCount)
 	{
 		std::cout << "Invalid index" << std::endl;
 		return;
